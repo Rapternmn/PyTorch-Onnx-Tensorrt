@@ -27,5 +27,5 @@ python3 detect.py --cfg cfg/yolov3.cfg --weights weights/yolov3.weights
 ## Generating the Onnx File
 
 ```
-python3 create_onnx.py
+python3 create_onnx.py --reso 608
 ```
