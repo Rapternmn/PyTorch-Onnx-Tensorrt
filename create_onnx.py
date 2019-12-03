@@ -717,17 +717,7 @@ def arg_parse():
 
 
 def main():
-    """Run the DarkNet-to-ONNX conversion for YOLOv3-608."""
-    # Have to use python 2 due to hashlib compatibility
-    # if sys.version_info[0] > 2:
-    #     raise Exception("This script is only compatible with python2, please re-run this script with python2. The rest of this sample can be run with either version of python.")
-
-    # Download the config for YOLOv3 if not present yet, and analyze the checksum:
-    # cfg_file_path = download_file(
-    #     'weights/yolov3.cfg',
-    #     'https://raw.githubusercontent.com/pjreddie/darknet/f86901f6177dfc6116360a13cc06ab680e0c86b0/cfg/yolov3.cfg',
-    #     'b969a43a848bbf26901643b833cfb96c')
-
+    
     args = arg_parse()
 
     cfg_file_path = args.cfgfile
@@ -753,9 +743,6 @@ def main():
     # In above layer_config, there are three outputs that we need to know the output
     # shape of (in CHW format):
     output_tensor_dims = OrderedDict()
-    # output_tensor_dims['082_convolutional'] = [255, 19, 19]
-    # output_tensor_dims['094_convolutional'] = [255, 38, 38]
-    # output_tensor_dims['106_convolutional'] = [255, 76, 76]
 
     output_tensor_dims['082_convolutional'] = [255, reso//32, reso//32]
     output_tensor_dims['094_convolutional'] = [255, reso//16, reso//16]
@@ -763,14 +750,6 @@ def main():
 
     # Create a GraphBuilderONNX object with the known output tensor dimensions:
     builder = GraphBuilderONNX(output_tensor_dims)
-
-    # We want to populate our network with weights later, that's why we download those from
-    # the official mirror (and verify the checksum):
-    # weights_file_path = download_file(
-    #     'weights/yolov3.weights',
-    #     'https://pjreddie.com/media/files/yolov3.weights',
-    #     'c84e5b99d0e52cd466ae710cadf6d84c')
-
 
     # Now generate an ONNX graph with weights from the previously parsed layer configurations
     # and the weights file:
