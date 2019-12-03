@@ -6,6 +6,9 @@ A set of tool which would make your life easier with Tensorrt and Onnxruntime fo
 2. OpenCV
 3. PyTorch
 4. Onnx 1.4.1
+5. Tensorrt
+
+I would Highly Recommend setting up a Nvidia DeepSTream/Tensorrt Docker for these operations.
 
 ## Downloading YoloV3 Configs and Weights
 ```
