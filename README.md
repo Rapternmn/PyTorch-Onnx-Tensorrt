@@ -29,3 +29,10 @@ python3 detect.py --cfg cfg/yolov3.cfg --weights weights/yolov3.weights
 ```
 python3 create_onnx.py --reso 608
 ```
+
+## Generating the Tensorrt File
+
+```
+python3 create_trt_engine.py --onnx_file yolov3.onnx 
+```
+Creating the Tensorrt engine takes some time. So have some patience.
