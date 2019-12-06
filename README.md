@@ -6,7 +6,8 @@ A set of tool which would make your life easier with Tensorrt and Onnxruntime fo
 2. OpenCV
 3. PyTorch
 4. Onnx 1.4.1
-5. Tensorrt
+5. Onnxruntime
+6. Tensorrt
 
 I would Highly Recommend setting up a Nvidia DeepSTream/Tensorrt Docker for these operations.
 
@@ -21,6 +22,14 @@ cd weights
 wget https://pjreddie.com/media/files/yolov3.weights
 ```
 
+## Editing Config File
+Inorder to Run the model in Pytorch or creating Onnx / Tensorrt File for different Input image Sizes ( 416, 608, 960 etc), you need to edit the Batch Size and Input image size in the config file - net info section.
+```
+batch=1
+width=416
+height=416
+```
+
 ## Running the detector Using Pytorch
 
 ```
@@ -30,7 +39,12 @@ python3 detect.py --cfg cfg/yolov3.cfg --weights weights/yolov3.weights
 ## Generating the Onnx File
 
 ```
-python3 create_onnx.py --reso 608
+python3 create_onnx.py --reso 416
+```
+
+## Running the detector Using ONNX
+```
+python3 detect.py --use_onnx True --onnx_file yolov3.onnx
 ```
 
 ## Generating the Tensorrt File

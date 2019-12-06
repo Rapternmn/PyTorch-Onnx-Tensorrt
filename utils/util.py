@@ -118,8 +118,9 @@ def predict_transform(prediction, inp_dim, anchors, num_classes, CUDA = True):
     anchors = anchors[:,idx_test_anchor]
 
     x_offset, y_offset = get_offset(idx_cpu,num_anchors,grid_size)
-    x_offset = x_offset.type(torch.cuda.FloatTensor)
-    y_offset = y_offset.type(torch.cuda.FloatTensor)
+    if CUDA:
+        x_offset = x_offset.type(torch.cuda.FloatTensor)
+        y_offset = y_offset.type(torch.cuda.FloatTensor)
 
     x_y_offset = torch.cat((x_offset, y_offset), 1).view(-1,2).unsqueeze(0)
 
@@ -307,7 +308,7 @@ def write_results_batch(prediction, confidence, num_classes, nms = True, nms_con
     
     return output
 
-def write_results(prediction, confidence, num_classes, nms = True, nms_conf = 0.4):
+def write_results(prediction, confidence, num_classes, nms = True, nms_conf = 0.4 , CUDA = True):
     conf_mask = (prediction[:,:,4] > confidence).float().unsqueeze(2)
     prediction = prediction*conf_mask
     
@@ -390,7 +391,7 @@ def write_results(prediction, confidence, num_classes, nms = True, nms_conf = 0.
                     start_1 = time.time()
 
                     try:
-                        ious = bbox_iou(image_pred_class[i].unsqueeze(0), image_pred_class[i+1:])
+                        ious = bbox_iou(image_pred_class[i].unsqueeze(0), image_pred_class[i+1:] , CUDA)
                     except ValueError:
                         break
         
