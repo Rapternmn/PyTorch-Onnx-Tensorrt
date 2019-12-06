@@ -9,7 +9,7 @@ A set of tool which would make your life easier with Tensorrt and Onnxruntime fo
 5. Onnxruntime
 6. Tensorrt
 
-I would Highly Recommend setting up a Nvidia DeepSTream/Tensorrt Docker for these operations.
+I would Highly Recommend setting up a Nvidia Deepstream/Tensorrt Docker for these operations.
 
 ## Downloading YoloV3 Configs and Weights
 ```
