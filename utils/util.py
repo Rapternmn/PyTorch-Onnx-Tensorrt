@@ -106,7 +106,7 @@ def predict_transform(prediction, inp_dim, anchors, num_classes, CUDA = True):
     prediction[:,:,1] = torch.sigmoid(prediction[:,:,1])
     prediction[:,:,4] = torch.sigmoid(prediction[:,:,4])
 
-    non_zero_ind_cpu,idx_cpu,prediction_cpu = filter_boxes_gpu(prediction)
+    non_zero_ind_cpu,idx_cpu,prediction_cpu = filter_boxes_gpu(prediction,0.3)
     anchors = torch.FloatTensor(np.asarray(anchors))
 
     if CUDA:

@@ -115,7 +115,7 @@ def detect(imgfile, model, onnx_flag = False):
 	# print("Total Time : ", total_time)
 
 	for i in car_boxes:
-		cv2.rectangle(img,(i[0],i[1]),(i[2],i[3]),(255,255,255),2)
+		cv2.rectangle(img,(i[0],i[1]),(i[2],i[3]),(0,0,0),2)
 		
 	cv2.imwrite("result.png", img)
 
